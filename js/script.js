@@ -44,6 +44,33 @@ button1.onclick = goStore;
 button2.onclick = goCave;
 button3.onclick = fightDragon;
 
+// images
+dragonImage = document.createElement("img");
+dragonImage.src = "img/dragon.jpg";
+
+townImage = document.createElement("img");
+townImage.src = "img/town.jpg";
+
+caveImage = document.createElement("img");
+caveImage.src = "img/cave.jpg";
+
+storeImage = document.createElement("img");
+storeImage.src = "img/store.jpg";
+
+monsterImage = document.createElement("img");
+monsterImage.src = "img/monster.jpg";
+
+defeatedMonsterImage = document.createElement("img");
+defeatedMonsterImage.src = "img/defeatedMonster.jpg";
+
+gameOverImage = document.createElement("img");
+gameOverImage.src = "img/gameover.jpg";
+
+winImage = document.createElement("img");
+winImage.src = "img/win.jpg";
+
+
+
 // World Information
 
 const weapons = [
@@ -72,42 +99,49 @@ const monsters = [
 ]
 
 const locations = [{
-    name: "town square",
+    name: "town",
     "button text": ["Go to store", "Go to cave", "Fight dragon"],
     "button functions": [goStore, goCave, fightDragon],
-    text: "You are in the town square. You see a sign that says \"Store\"."
+    text: "You are in the town square. You see a sign that says \"Store\".",
+    image: townImage
 },
 {
     name: "store",
     "button text": ["Buy 10 health (10 gold)", "Buy weapon (30 gold)", "Go to town square"],
     "button functions": [buyHealth, buyWeapon, goTown],
-    text: "You enter the store."
+    text: "You enter the store.",
+    image: storeImage
 },
 {
     name: "cave",
     "button text": ["Fight slime", "Fight fanged beast", "Go to town square"],
     "button functions": [fightSlime, fightBeast, goTown],
-    text: "You enter the cave. You see some monsters."
+    text: "You enter the cave. You see some monsters.",
+    image: caveImage
 },
 {name: "fight",
     "button text": ["Attack", "Dodge", "Run"],
     "button functions": [attack, dodge, goTown],
-    text: "You are fighting a monster."
+    text: "You are fighting a monster.",
+    image: monsterImage
 },
 {name: "kill monster",
     "button text": ["Go to town square", "Go to town square", "Stay in cave"],
     "button functions": [goTown, goTown, goCave],
-    text: "The monster screams Arg! as it dies. You gain experience points and find gold."
+    text: "The monster screams Arg! as it dies. You gain experience points and find gold.",
+    image: defeatedMonsterImage
 },
 {name: "lose",
     "button text": ["REPLAY?", "REPLAY?", "REPLAY?"],
     "button functions": [restart, restart, restart],
-    text: "You die. &#x2620;"
+    text: "You die. &#x2620;",
+    image: gameOverImage
 },
 {name: "win",
     "button text": ["REPLAY?", "REPLAY?", "REPLAY?"],
     "button functions": [restart, restart, restart],
-    text: "You defeat the dragon! YOU WIN THE GAME! &#x1F389;"
+    text: "You defeat the dragon! YOU WIN THE GAME! &#x1F389;",
+    image: winImage
 }
 ];
 
@@ -125,6 +159,9 @@ function update(location) {
     button1.onclick = location["button functions"][0];
     button2.onclick = location["button functions"][1];
     button3.onclick = location["button functions"][2];
+
+    document.querySelector("#screen-container").removeChild(document.querySelector("#screen-container").firstChild);
+    document.querySelector("#screen-container").appendChild(location.image);
 }
 
 function goTown() {  
